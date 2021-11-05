@@ -14,3 +14,18 @@ values ('1', 'Popeye' , '33'),
         (3,'Brutus',98);
     
 SELECT    * FROM    Science_class;
+
+select name_student , Science_marks from Science_class;
+
+# ejercicio 3 
+select * from Science_class;
+
+select Name_student from Science_class where Science_marks > 60;
+
+select * from Science_class where Science_marks >35 and Science_marks < 60;
+
+select	* from Science_class where Science_marks <= 35 or Science_marks >= 60; 
+
+# fin ejercicio 3
+
+
