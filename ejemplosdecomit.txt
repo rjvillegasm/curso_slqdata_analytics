@@ -1,0 +1,2 @@
+git commit -m "ejercicio 3 resuelto" 'clase de ciencias.sql'
+git commit -m "comienza seccion update" 'tabla clientes.sql'
