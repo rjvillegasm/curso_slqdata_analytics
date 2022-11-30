@@ -1,1 +1,2 @@
 holA MUNDO  prueba de git status
+mas lineas al archivo para actualizar desde vs_code
