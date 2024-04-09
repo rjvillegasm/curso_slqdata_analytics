@@ -42,3 +42,11 @@ delete from Science_class where name_student='Robb';
 
 alter table Science_class rename name_student to student_name;
 
+-- ejercicio 5
+
+select distinct city  from  customer  where region    in  ( 'North', 'East');
+
+select * from sales where sales between 100 and 500;
+
+select * from customer where customer_name like '% ____';
+-- fin ejercicio 5

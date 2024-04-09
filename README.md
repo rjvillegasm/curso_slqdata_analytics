@@ -1,6 +1,6 @@
 # curso_slq_data_analytics
 
-Archivos y desarrollo del curso:  SQL Masterclass: SQL for Data Analytics
+Archivos y desarrollo del curso:"SQL Masterclass: SQL for Data Analytics"
 
 por: Start-Tech Academy
 
