@@ -49,4 +49,7 @@ select distinct city  from  customer  where region    in  ( 'North', 'East');
 select * from sales where sales between 100 and 500;
 
 select * from customer where customer_name like '% ____';
--- fin ejercicio 5
+
+-- ejercicio 7
+select * from sales where discount >0 Order by discount desc limit 10;
+
