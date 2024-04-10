@@ -53,3 +53,16 @@ select * from customer where customer_name like '% ____';
 -- ejercicio 7
 select * from sales where discount >0 Order by discount desc limit 10;
 
+-- ejercicio 8
+
+select sum(sales) from sales;
+
+-- revisamos la tabla
+select * from customer;
+
+select count(customer_id) from customer where  age between 20 and 30;
+
+select avg(age) from customer where region = 'East';
+
+select  min(age), max(age) from customer where city='Philadelphia';
+
