@@ -66,3 +66,21 @@ select avg(age) from customer where region = 'East';
 
 select  min(age), max(age) from customer where city='Philadelphia';
 
+-- ejercicio 9
+
+select * from sales;
+
+select product_id, 
+sum(sales) as total_sales,
+sum(quantity) as total_units,
+count(order_id) as number_of_orders,
+max(sales) as max_sale,
+min(sales) as min_sale,
+avg(sales) as avg_sale
+from sales group by product_id order by total_sales desc; 
+
+select product_id , sum(quantity) as total_units
+from sales group by product_id 
+having sum(quantity)>50 order by total_units desc;    
+
+
