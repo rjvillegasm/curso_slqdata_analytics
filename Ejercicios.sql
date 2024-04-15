@@ -83,4 +83,31 @@ select product_id , sum(quantity) as total_units
 from sales group by product_id 
 having sum(quantity)>50 order by total_units desc;    
 
+-- ejercicio 10
 
+--1
+-- revisamos las tablas 
+select * from sales_2015;
+select * from customer_20_60;
+
+select b.state, sum(a.sales) as total_sales 
+from sales_2015 as a left join customer_20_60 as b
+on a.customer_id = b.customer_id 
+group by b.state order by total_sales desc;
+
+--2
+-- revisamos las tablas 
+select * from sales;
+select * from product;
+
+select b.product_id, b.product_name , b.category,
+sum(a.sales) as total_sales, sum(a.quantity) as total_units
+from product as b left join sales as a 
+on b.product_id = a.product_id 
+group by b.product_id order by total_sales desc;   
+-- nota: la columna mencionada en el group by debe ser exactamente la misma del select inicial,
+-- incluyendo el alias de su tabla de origen
+
+-- solo para revisar
+select product_id , sum (sales) as total_sales, sum(quantity) as total_units
+from sales  group by product_id order by total_sales desc; 
