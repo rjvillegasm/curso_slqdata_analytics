@@ -111,3 +111,80 @@ group by b.product_id order by total_sales desc;
 -- solo para revisar
 select product_id , sum (sales) as total_sales, sum(quantity) as total_units
 from sales  group by product_id order by total_sales desc; 
+
+-- ejercicio 11
+
+--revisamos las tablas
+select * from sales;
+select * from product;
+select * from customer;
+-- véase imagen "13 sub queries ERD"
+
+
+select a.*, b.customer_name, b.age from sales as a 
+left join customer as b
+on a.customer_id = b.customer_id;
+
+-- utilizando solo sub queries en el select 
+select order_line, order_id, customer_id, product_id, sales, quantity , profit,
+(select customer_name from customer where customer.customer_id = sales.customer_id ),
+(select age from customer where customer.customer_id = sales.customer_id ),
+(select product_name from product where product.product_id = sales.product_id ),
+(select category from product where product.product_id = sales.product_id )
+from sales order by order_line asc;
+
+-- utilizando sub queries y join 
+select 
+a.product_name,
+a.category,
+b.product_id, 
+b.order_id, 
+b.sales,
+b.cust_name,
+b.cust_age
+from product as a  left join 
+( select order_id, sales, product_id,
+(select customer_name from customer where customer.customer_id = sales.customer_id ) as cust_name,
+(select age from customer where customer.customer_id = sales.customer_id ) as cust_age
+from sales) as b on a.product_id = b.product_id;
+
+-- alternativa
+select 
+a.product_name,
+a.category,
+b.*
+from product as a  left join 
+( select order_id, sales, product_id,
+(select customer_name from customer where customer.customer_id = sales.customer_id ) as cust_name,
+(select age from customer where customer.customer_id = sales.customer_id ) as cust_age
+from sales) as b on a.product_id = b.product_id;
+
+
+
+-- respuesta pdf
+-- sp: sales-product
+select c.customer_name, c.age, sp.* from
+customer as c
+right join (select s.*, p.product_name, p.category
+from sales as s
+left join product as p
+on s.product_id = p.product_id) as sp
+on c.customer_id = sp.customer_id;
+
+-- simplificando la respuesta
+
+-- primero creamos un join al cual asignamos un alias
+select s.order_id, s.sales, p.product_name, p.category
+from sales as s
+left join product as p
+on s.product_id = p.product_id;
+-- asignamos un alias
+(select s.order_id, s.sales, p.product_name, p.category
+from sales as s
+left join product as p
+on s.product_id = p.product_id) as sp 
+-- luego continúo con un right join entre sp y customer
+select c.customer_name, c.age, sp.* from
+customer as c
+right join (/* tabla*/ ) as sp
+on c.customer_id = sp.customer_id;
