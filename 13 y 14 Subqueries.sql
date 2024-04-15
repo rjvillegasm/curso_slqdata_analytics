@@ -122,11 +122,10 @@ from sales) as b on a.product_id = b.product_id;
 
 -- respuesta pdf
 -- sp: sales-product
-select c.customer_name, c.age, sp.* from
-customer as c
-right join (select s.*, p.product_name, p.category
-from sales as s
-left join product as p
+select c.customer_name, c.age, sp.* 
+from customer as c right join 
+(select s.*, p.product_name, p.category
+from sales as s left join product as p
 on s.product_id = p.product_id) as sp
 on c.customer_id = sp.customer_id;
 
@@ -134,17 +133,15 @@ on c.customer_id = sp.customer_id;
 
 -- primero creamos un join al cual asignamos un alias
 select s.order_id, s.sales, p.product_name, p.category
-from sales as s
-left join product as p
+from sales as s left join product as p
 on s.product_id = p.product_id;
 -- asignamos un alias
 (select s.order_id, s.sales, p.product_name, p.category
-from sales as s
-left join product as p
+from sales as s left join product as p
 on s.product_id = p.product_id) as sp 
 -- luego continúo con un right join entre sp y customer
-select c.customer_name, c.age, sp.* from
-customer as c
+select c.customer_name, c.age, sp.* 
+from customer as c
 right join (/* tabla*/ ) as sp
 on c.customer_id = sp.customer_id;
 

@@ -85,7 +85,7 @@ having sum(quantity)>50 order by total_units desc;
 
 -- ejercicio 10
 
---1
+--parte 1
 -- revisamos las tablas 
 select * from sales_2015;
 select * from customer_20_60;
@@ -95,7 +95,7 @@ from sales_2015 as a left join customer_20_60 as b
 on a.customer_id = b.customer_id 
 group by b.state order by total_sales desc;
 
---2
+--parte 2
 -- revisamos las tablas 
 select * from sales;
 select * from product;
