@@ -188,3 +188,19 @@ select c.customer_name, c.age, sp.* from
 customer as c
 right join (/* tabla*/ ) as sp
 on c.customer_id = sp.customer_id;
+
+-- ejercicio 12
+
+--revisamos la tabla
+ select * from sales ;
+--probamos el select
+select order_line, product_id,sales, discount, order_date
+from sales order by order_date asc limit 5 ;
+-- ejecutamos la vista
+create view Daily_Billing as 
+select order_line, product_id,sales, discount
+from sales order by order_date asc limit 1 ;
+-- revisamos el resultado
+select * from Daily_Billing;
+--borramos
+drop view Daily_Billing;
