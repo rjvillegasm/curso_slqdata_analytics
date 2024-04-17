@@ -204,3 +204,32 @@ from sales order by order_date asc limit 1 ;
 select * from Daily_Billing;
 --borramos
 drop view Daily_Billing;
+
+-- ejercicio 13
+select * from product;
+--1.
+select max( length(product_name)) as nombre_mas_largo from product;
+--2.
+select product_name, category, sub_category,
+product_name||', ' ||category||', '|| sub_category as product_details
+from product; 
+--3. 
+select product_id,
+substring(product_id,1,3) as cat, 
+substring(product_id,5,2) as sub_cat,
+substring (product_id,8, 8) as code 
+from product; 
+--revisando la primera fila
+select product_id,
+substring(trim(product_id,' '),1,3) as cat 
+from product;
+--4. 
+select product_name, sub_category,
+replace(product_name,' ',',')
+from product 
+where sub_category in('Chairs','Tables') ;
+--4. alternativa
+select sub_category,
+STRING_AGG(product_name,',')
+from product group by sub_category 
+having sub_category in('Chairs','Tables') ;
