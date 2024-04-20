@@ -233,3 +233,32 @@ select sub_category,
 STRING_AGG(product_name,',')
 from product group by sub_category 
 having sub_category in('Chairs','Tables') ;
+
+-- ejercicio 14
+select * from customer;
+
+--1.
+select customer_id, customer_name,random() as random_number 
+from customer order by random_number limit 5;
+
+--2.
+Create table my_sales as (
+select sum(sales) as total_sales,
+sum(ceil(sales)) as ceil_sales,
+sum(floor(sales)) as floor_sales,
+sum(round(sales)) as total_rounded
+from sales order by total_sales desc);
+
+select * from my_sales;
+
+select total_sales, ceil_sales as ceil_floor_round_sales,
+(total_sales - ceil_sales) as ceil_flood_round_diff
+from my_sales
+union 
+select total_sales,floor_sales,
+(total_sales - floor_sales) as floor_diff
+from my_sales
+union 
+select total_sales , total_rounded ,
+(total_sales - total_rounded) as round_diff
+from my_sales;
