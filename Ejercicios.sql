@@ -262,3 +262,41 @@ union
 select total_sales , total_rounded ,
 (total_sales - total_rounded) as round_diff
 from my_sales;
+
+-- ejercicio 15
+
+--1.
+select to_char (age('1939-4-6', current_date ), 'YYdd') 
+as batman_age_in_years_and_days;
+
+--2. ventas mensuales de la sub categoría chairs
+select * from product;
+-- resultado esperado
+select meses, sum (sales) from sales group by meses having subcategoría ='Chair'
+-- creamos el join
+select s.order_id, s.order_date, s.sales, p.sub_category from sales as s 
+left join product as p 
+on s.product_id = p.product_id ;
+-- obtenemos el mes 
+select  Extract(month from s.order_date) as mes , s.sales, p.sub_category from sales as s 
+left join product as p 
+on s.product_id = p.product_id 
+where p.sub_category = 'Chairs';
+--  sub query
+
+select mes, round(sum(sales)) as ventas from (
+select  Extract(month from s.order_date) as mes , s.sales, p.sub_category from sales as s 
+left join product as p 
+on s.product_id = p.product_id 
+where p.sub_category = 'Chairs') group by mes order by mes ;
+
+
+-- opción con CTE
+with venta_meses_sillas ( mes, ventas, sillas ) as 
+(
+select  Extract(month from s.order_date) as mes , s.sales, p.sub_category from sales as s 
+left join product as p 
+on s.product_id = p.product_id 
+where p.sub_category = 'Chairs'
+)
+select mes, round(sum(ventas)) as sales from venta_meses_sillas group by mes order by mes ;
