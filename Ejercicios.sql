@@ -300,3 +300,21 @@ on s.product_id = p.product_id
 where p.sub_category = 'Chairs'
 )
 select mes, round(sum(ventas)) as sales from venta_meses_sillas group by mes order by mes ;
+
+
+-- ejercicio 16 
+--1.
+select * from customer
+where customer_name ~*'^[a-z]{5}\s(a|b|c|d)[a-z]{4}$'; 
+
+--2.
+--creamos tabla zipcode
+create table zipcode (id serial primary key,
+"PIN/ZIP codes" character varying);
+-- insertamos valores
+insert into zipcode ("PIN/ZIP codes") values('234432'),
+('23345'),('sdfe4'),('123&3'),('67424'),('7895432'),('12312'); 
+-- seleccionamos la tabla
+select*from zipcode;
+-- validamos que tengan entre 5 y 6 valores numéricos
+select * from zipcode where "PIN/ZIP codes" ~*'^[0-9]{5,6}$';
