@@ -319,6 +319,10 @@ lead(sales,1) over(partition by customer_id order by order_date) as next_sales,
 lead(order_id,1) over(partition by customer_id order by order_date) as next_order_id
 from order_rollup_state;
 
+-- fin sección 20
+
+
+-- Sección 21
 
 --96 Coalesce
 -- retorna el primer valor no-null de una lista de valores
@@ -345,3 +349,4 @@ Coalesce(first_name,middle_name, last_name) as name_corr,
 concat(first_name,middle_name, last_name) as name_concat 
 from emp_name;
 
+-- fin sección 21
